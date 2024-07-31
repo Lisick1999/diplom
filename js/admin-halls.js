@@ -5,6 +5,7 @@ const hallName = document.getElementById('hall-name');
 const submitHallButton = document.getElementById('create-hall');
 const hallsListWrapper = document.querySelector('.admin-halls__wrapper');
 const hallsList = document.createElement('ul');
+const adminMain = document.querySelector('.admin-index');
 
 hallsListWrapper.insertBefore(hallsList, addHallPopupButton);
 hallsList.classList.add('admin-halls__list');
@@ -17,7 +18,7 @@ function renderHallsList (hallsInfo) {
 				<p class="admin-halls__item-text">${element.hall_name}</p>
 				<button class="admin-delete-button_halls admin-delete-button"></button>
 			</li>`
-			)
+		)
 	});
 	const deleteHallButton = [...document.querySelectorAll('.admin-delete-button_halls')];
 	deleteHall(deleteHallButton);
@@ -28,22 +29,22 @@ function renderHallsList (hallsInfo) {
 };
 
 function deleteHall (buttonArray) {
-		buttonArray.forEach((element) => {
-			element.addEventListener('click', (e) => {
-				e.preventDefault();
-				const hallId = element.closest('.admin-halls__list-item').id.slice(4);
+	buttonArray.forEach((element) => {
+		element.addEventListener('click', (e) => {
+			e.preventDefault();
+			const hallId = element.closest('.admin-halls__list-item').id.slice(4);
 
-				data.deleteHall(hallId);
-			});
-		})
+			data.deleteHall(hallId);
+		});
+	})
 };
 
 function renderHallSwitch (hallSwitchContainer, hallsInfo) {
 	hallSwitchContainer.innerHTML = '';
 	hallsInfo.forEach((element) => {
-		hallSwitchContainer.insertAdjacentHTML('beforeend', `<button class="hall-switch__button">${element.hall_name}</button>`
-			)
+		hallSwitchContainer.insertAdjacentHTML('beforeend', `<button class="hall-switch__button">${element.hall_name}</button>`)
 	});
+
 	const hallItemsRendered = [...hallSwitchContainer.children];
 
 	hallItemsRendered[0].classList.add('hall-switch__button_active');
@@ -82,13 +83,13 @@ function renderHallSwitch (hallSwitchContainer, hallsInfo) {
 };
 
 addHallPopupButton.addEventListener('click', (e) => {
+	adminMain.classList.add('hidden');
 	addHallPopup.classList.remove('hidden');
 });
 
 submitHallButton.addEventListener('click', (e) => {
 	e.preventDefault();
-
 	hallsList.innerHTML = "";
-
 	data.addHall();
+	adminMain.classList.remove('hidden');
 });

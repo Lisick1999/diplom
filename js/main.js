@@ -1,16 +1,14 @@
 const loginButton = document.getElementById('login')
+let data = new allData;
+const filmCards = document.querySelector('.client__index');
+const seanceSeats = document.querySelector('.client__hall');
+const paymentWindow = document.querySelector('.client__payment');
 
 loginButton.addEventListener('click', (e) => {
 	e.preventDefault();
 
 	window.open('login.html', '_self')
 })
-
-let data = new allData;
-
-const filmCards = document.querySelector('.client__index');
-const seanceSeats = document.querySelector('.client__hall');
-const paymentWindow = document.querySelector('.client__payment');
 
 async function renderFilmCards () {
 	await data.getData();
@@ -36,37 +34,30 @@ async function renderFilmCards () {
 					</div>
 				</div>
 			</div>
-			<div class="movie__schedule">
-
-			</div>
+			<div class="movie__schedule"></div>
 		`)
 
 		const filmSchedule = [...document.querySelectorAll('.movie__schedule')];
-
-		
-
 		const filmSeances = []
 		const filmHalls = []
 
 		seancesInfo.forEach((item) => {
-    		const seanceFilm = item.seance_filmid;
-    		if (seanceFilm === element.id) {
-    			filmSeances.push(item);
-    		}
-    		
+			const seanceFilm = item.seance_filmid;
+			if (seanceFilm === element.id) {
+				filmSeances.push(item);
+			}
 		})
 
 		hallsInfo.forEach((item, hallIndex) => {
 			if (!item.hall_open == 0) {
-    			if (filmSeances.some((e) => e.seance_hallid === item.id)) {
-    				filmSchedule[index].insertAdjacentHTML('beforeend',`
-    					<div class="movie-halls" data-id="${item.id}" data-open="1">
+				if (filmSeances.some((e) => e.seance_hallid === item.id)) {
+					filmSchedule[index].insertAdjacentHTML('beforeend',`
+						<div class="movie-halls" data-id="${item.id}" data-open="1">
 							<h3 class="movie-halls__title">${item.hall_name}</h3>
-							<ul class="movie-halls__times">
-							</ul>
+							<ul class="movie-halls__times"></ul>
 						</div>
 					`)
-    			}
+				}
 			}
 		})
 
@@ -74,7 +65,7 @@ async function renderFilmCards () {
 			filmArticle.classList.add('hidden')
 		}
 
-	renderFilmSeances(element, filmSeances);
+		renderFilmSeances(element, filmSeances);
 	});
 }
 
@@ -104,7 +95,6 @@ function renderFilmSeances (film, filmSeances) {
 					window.localStorage.setItem('seanceTime', element.seance_time);
 					window.localStorage.setItem('filmTitle', film.film_name);
 					window.localStorage.setItem('chosenDate', chosenDate);
-					console.log(window.localStorage.getItem('seanceId'))
 					window.open('hall.html', '_self');
 				})
 			}

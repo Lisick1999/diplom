@@ -7,7 +7,6 @@ let dragged;
 async function getData() {
 	await data.getData();
 
-	console.log(data.info)
 	hallItems = data.info.halls;
 	filmItems = data.info.films;
 	seanceItems = data.info.seances;
@@ -27,6 +26,7 @@ const cancelPopup = [...document.querySelectorAll('.popup-cancel')]
 closePopup.forEach((element) => {
 	element.addEventListener('click', (e) => {
 		element.closest('.popup-wrapper').classList.toggle('hidden');
+		adminMain.classList.remove('hidden');
 	})
 });
 
@@ -34,17 +34,6 @@ cancelPopup.forEach((element) => {
 	element.addEventListener('click', (e) => {
 		e.preventDefault();
 		element.closest('.popup-wrapper').classList.toggle('hidden');
+		adminMain.classList.remove('hidden');
 	})
 });
-
-
-
-
-
-
-
-
-
-
-
-

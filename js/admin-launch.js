@@ -1,5 +1,4 @@
 const launchButton = document.getElementById('launch-button');
-
 let launchActiveHall;
 let isHallOpen;
 

@@ -40,10 +40,6 @@ function renderPayment () {
 		params.set('ticketDate', chosenDate);
 		params.set('tickets', JSON.stringify(chosenSeats));
 
-		console.log(params.get('seanceId'));
-		console.log(params.get('ticketDate'));
-		console.log(params.get('tickets'));
-
 		data.setTicket(params);
 	})
 }
@@ -51,10 +47,8 @@ function renderPayment () {
 function renderTicket() {
 	getCodeButton.classList.add('hidden');
 	ticketInfo.children.item(4).remove();
-
 	ticketHint.children.item(0).textContent = 'Покажите QR-код нашему контроллеру для подтверждения бронирования.';
-
-
+	
 	const qrcode = QRCreator(`Дата: ${chosenDate}, Время:${seanceTime}, Название фильма:${filmTitle}, Зал:${hallTitle}, ${placeArray.join(', ')}, Стоимость:${totalPrice}. Билет действителен строго на свой сеанс`,
 		{ mode: 4,
 		  eccl: 0,

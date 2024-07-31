@@ -9,9 +9,7 @@ const timeInput = document.getElementById('time-select');
 
 submitSessionButton.addEventListener('click', (e) => {
 	e.preventDefault();
-
 	const params = new FormData(addSessionForm);
-
 	data.addSession(params);
 })
 
@@ -25,7 +23,7 @@ function renderSessionsList (halls, seances) {
 				</div>
 				<div class="admin-sessions__session-delete visually-hidden"></div>
 			</li>`
-			)
+		)
 		hallSelect.insertAdjacentHTML('beforeend', `<option value="${element.id}">${element.hall_name}</option>`)
 	});
 
@@ -39,6 +37,7 @@ function renderSessionsList (halls, seances) {
 		timelineElement.addEventListener('drop', (e) => {
 			if (filmCards.includes(dragged)) {
 				addSessionPopup.classList.toggle('hidden');
+				adminMain.classList.add('hidden');
 
 				for (let i, j = 0; i = hallSelect.options[j]; j++) {
 					if (i.value == timelineElement.id.slice(12)) {
@@ -96,7 +95,6 @@ function renderSessionsList (halls, seances) {
 				const bgColor = window.getComputedStyle(seanceFilm).backgroundColor;
 				seanceItem.style.background = bgColor;
 			}
-
 		}
 	})
 
@@ -109,7 +107,6 @@ function renderSessionsList (halls, seances) {
 		hallsTimeline.forEach((item) => {
 			element.children.item(1).appendChild(item);
 		})
-
 	})
 
 	const seanceBlock = [...document.querySelectorAll('.admin-sessions__session-wrapper')];
@@ -130,13 +127,11 @@ function renderSessionsList (halls, seances) {
 
 	deleteSeance.forEach((element, index) => {
 		element.addEventListener('dragover', (e) => {
-				e.preventDefault();
-			})
+			e.preventDefault();
+		})
 
 		element.addEventListener('drop', (e) => {
-
 			const transferData = e.dataTransfer.getData("text");
-
 			data.deleteSession(transferData);
 		})		
 	})

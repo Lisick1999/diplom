@@ -1,12 +1,10 @@
 let data = new allData;
-
 const hallConfig = document.querySelector('.client__hall');
 const hallSeanceInfo = document.querySelector('.session__info');
 const hallGrid = document.querySelector('.hall__grid');
 const hallGridLegendStandart = document.getElementById('legend-standart');
 const hallGridLegendVip = document.getElementById('legend-vip');
 const bookingButton = document.querySelector('.booking__button');
-
 const seanceId = window.localStorage.getItem('seanceId');
 const seanceHallId = window.localStorage.getItem('seanceHallId');
 const seanceTime = window.localStorage.getItem('seanceTime');
@@ -30,13 +28,12 @@ async function renderSeanceConfig () {
 		<p class="session__time">Начало сеанса: ${seanceTime}</p>
 		<p class="session__hall">${hallTitle}</p>
 	`);
-
+	
 	hallGrid.style.setProperty('grid-template-rows', `repeat(${hallConfig.length}, 20px)`);
 	hallGrid.style.setProperty('grid-template-columns', `repeat(${hallConfig[0].length}, 20px)`);
 
 	hallConfig.forEach((row, rowIndex) => {
 		row.forEach((place, placeIndex) => {
-
 			const hallGridCell = document.createElement('div');
 			
 			hallGrid.appendChild(hallGridCell);
@@ -89,7 +86,7 @@ async function renderSeanceConfig () {
 			window.localStorage.setItem('hallTitle', hallTitle);
 			window.open('payment.html', '_self');
 		} else {
-			alert('Выберите места');
+			renderError ({error: 'Выберите места'});
 		}
 	})
 };

@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>shfe-diploma</title>
 		<link rel="stylesheet" href="css/style.css">
-		
 	</head>
 	<body class="body-admin">
 		<div class="content-wrapper-admin">
@@ -77,6 +76,17 @@
 					</form>
 				</div>
 			</div>
+
+			<div class="popup-wrapper hidden" id="popup-error">
+				<div class="popup-hall popup wrapper-error">
+					<header class="popup-header">
+						<h3 class="popup-title">Ошибка</h3>
+						<button class="popup-close-error"></button>
+					</header>
+					
+				</div>
+			</div>
+
 			<main class="admin-index">
 				<section class="admin-halls admin-section">
 					<header class="admin-halls__header admin-section__header">
@@ -104,12 +114,12 @@
 							<div class="input-container">
 								<div class="input-wrapper">
 									<label for="rows" class="seat-count__label admin__label">Рядов, шт</label>
-									<input type="text" class="seat-count__input admin__input" id="rows" placeholder="10">
+									<input type="number" class="seat-count__input admin__input" id="rows" placeholder="10" max="10" onkeydown="return false">
 								</div>
 								<span class="seat-count__breaker">x</span>
 								<div class="input-wrapper">
 									<label for="columns" class="seat-count__label admin__label">Мест, шт</label>
-									<input type="text" class="seat-count__input admin__input" id="columns" placeholder="8">							
+									<input type="number" class="seat-count__input admin__input" id="columns" placeholder="8" max="8" onkeydown="return false">							
 								</div>
 							</div>
 						</div>
@@ -216,5 +226,6 @@
 		<script defer src="js/admin-film.js"></script>
 		<script defer src="js/admin-sessions.js"></script>
 		<script defer src="js/admin-launch.js"></script>
+		<script defer src="js/error.js"></script>
 	</body>
 </html>

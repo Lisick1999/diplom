@@ -2,7 +2,6 @@ const pricesConfirm = document.getElementById('create-prices');
 const pricesCancel = document.getElementById('cancel-prices');
 const inputPriceStandart = document.getElementById('price-regular');
 const inputPriceVip = document.getElementById('price-vip');
-
 let hallPrices = [];
 let pricesActiveHall;
 
@@ -46,4 +45,4 @@ function cancelHallPrices () {
 }
 
 pricesConfirm.addEventListener('click', saveHallPrices);
-pricesCancel.addEventListener('click', cancelHallPrices)
+pricesCancel.addEventListener('click', cancelHallPrices);

@@ -2,7 +2,6 @@ const inputRows = document.getElementById('rows');
 const inputSeats = document.getElementById('columns');
 const configConfirm = document.getElementById('create-config');
 const configCancel = document.getElementById('cancel-config');
-
 let hallConfig = [];
 let configActiveHall;
 
@@ -46,7 +45,6 @@ function hallInput () {
 				setTimeout(() => {
 					renderHallSeats();
 				}, 2000)
-				
 			}
 		}
 	});
@@ -57,14 +55,11 @@ function renderHallSeats () {
 	const hallGridCell = document.createElement('div');
 
 	hallGrid.innerHTML = '';
-
 	hallGrid.style.setProperty('grid-template-rows', `repeat(${hallConfig.length}, 26px)`);
 	hallGrid.style.setProperty('grid-template-columns', `repeat(${hallConfig[0].length}, 26px)`);
 	hallConfig.forEach((row, rowIndex) => {
 		row.forEach((place, placeIndex) => {
-
 			const hallGridCell = document.createElement('div');
-			
 			hallGrid.appendChild(hallGridCell);
 			hallGridCell.classList.add('seat-scheme__item');
 			if (place === 'standart') {
@@ -93,12 +88,11 @@ async function saveHallSeats () {
 	const placeCount = hallConfig[0].length;
 	const rowCount = hallConfig.length;
 	const params = new FormData();
+
 	params.set('rowCount', rowCount);
 	params.set('placeCount', placeCount);
 	params.set('config', JSON.stringify(hallConfig));
-
 	data.saveConfig(params);
-
 }
 
 function cancelHallSeats () {
@@ -107,4 +101,3 @@ function cancelHallSeats () {
 
 configConfirm.addEventListener('click', saveHallSeats);
 configCancel.addEventListener('click', cancelHallSeats);
-

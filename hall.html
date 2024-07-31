@@ -10,12 +10,23 @@
     <header class="header">
       <h1 class="header__logo">Идём<span class="header__logo-thin">в</span>кино</h1>
     </header>
+    
+    <div class="popup-wrapper hidden" id="popup-error">
+      <div class="popup-hall popup wrapper-error">
+        <header class="popup-header">
+          <h3 class="popup-title">Ошибка</h3>
+          <button class="popup-close-error"></button>
+        </header>
+        
+      </div>
+    </div>
+
     <main class="client__hall">
         <div class="session__info-wrapper">
           <div class="session__info">
           </div>
           <div class="zoom-hint">
-            <img src="resources/images/hint.png" alt="" class="hint-icon">
+            <img src="images/hint.png" alt="" class="hint-icon">
             <p class="hint-text">Тапните дважды, чтобы увеличить</p>					
           </div>
         </div>
@@ -51,5 +62,6 @@
       </main>
       <script defer src="js/xhr.js"></script>
       <script defer src="js/hall.js"></script>
+      <script defer src="js/error.js"></script>
   </body>
 </html>

@@ -2,12 +2,10 @@ const calendarWrapper = document.querySelector('.nav');
 const calendar = document.querySelector('.nav__list');
 const today = new Date();
 const dayButtonsCount = 6;
-
 let isCalendarSwitched = 0;
 let todayDate = new Date(today);
 let	chosenDate = `${todayDate.getFullYear()}-${todayDate.getMonth() + 1}-${todayDate.getDate()}`;
 const todayDateString = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-
 let dateItem = new Date(todayDate);
 
 function getDayName(date) {
@@ -16,7 +14,6 @@ function getDayName(date) {
 }
 
 function renderCalendar (date) {
-
 	calendar.innerHTML = '';
 
 	for (let i = 0; i < dayButtonsCount; i++) {
@@ -26,13 +23,10 @@ function renderCalendar (date) {
 	}
 
 	const calendarItems = [...calendar.children]
-
 	let todayDate = new Date(date)	
-
 	let activeDate = 0;
 
 	renderFilmCards();
-
 
 	calendarItems.forEach((element, index) => {
 		element.innerHTML = '';
@@ -47,12 +41,12 @@ function renderCalendar (date) {
 		dayNumber.textContent = dateItem.getDate();
 
 		if (today.getDate() === dateItem.getDate()) {
-				dayName.textContent = `Сегодня`;
-				dayNumber.textContent = `${getDayName(dateItem)},${dateItem.getDate()}`;
-			} else {
-				dayName.textContent = `${getDayName(dateItem)},`;
-				dayNumber.textContent = dateItem.getDate();			
-			}
+			dayName.textContent = `Сегодня`;
+			dayNumber.textContent = `${getDayName(dateItem)},${dateItem.getDate()}`;
+		} else {
+			dayName.textContent = `${getDayName(dateItem)},`;
+			dayNumber.textContent = dateItem.getDate();			
+		}
 
 		element.appendChild(dayName);
 		element.appendChild(dayNumber);
@@ -60,6 +54,7 @@ function renderCalendar (date) {
 		if (dateItem.getDay() === 0 || dateItem.getDay() === 6) {
 			element.classList.add('nav__item-red')
 		}
+
 		element.setAttribute('data-date', `${dateItem.getFullYear()}-${dateItem.getMonth() + 1}-${dateItem.getDate()}`)
 		element.addEventListener('click', e => {
 			if (index !== activeDate) {
@@ -68,7 +63,6 @@ function renderCalendar (date) {
 				chosenDate = element.dataset.date;
 				activeDate = index;
 				renderFilmCards();
-				console.log(chosenDate);
 			}
 		})
 		dateItem.setDate(dateItem.getDate() + 1);	
@@ -93,7 +87,6 @@ function renderCalendar (date) {
 			e.target.innerHTML = '';
 			renderCalendar(dateItem);
 		})
-
 	} else {
 		chosenDate = calendarItems[0].dataset.date;
 
@@ -107,9 +100,6 @@ function renderCalendar (date) {
 			renderCalendar(dateItem);
 		})
 	}
-	console.log(chosenDate);
 }
-
-
 
 renderCalendar(today);

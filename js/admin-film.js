@@ -11,21 +11,19 @@ const filmsList = document.querySelector('.admin-sessions__movie-list');
 
 addFilmPopupButton.addEventListener('click', (e) => {
 	addFilmPopup.classList.toggle('hidden');
+	adminMain.classList.add('hidden');
 })
 
 submitFilmButton.addEventListener('click', (e) => {
 	e.preventDefault();
-
 	filmsList.innerHTML = "";
 
 	const params = new FormData(addFilmForm);
-
-	data.addFilm(params)
-
+	data.addFilm(params);
+	adminMain.classList.remove('hidden');
 })
 
 function renderFilmsList (filmItems) {
-
 	filmsList.innerHTML = "";
 	filmItems.forEach((element) => {
 		filmsList.insertAdjacentHTML('beforeend', 
@@ -37,7 +35,7 @@ function renderFilmsList (filmItems) {
 				</div>
 				<button class="admin-delete-button admin-delete-button_sessions"></button>
 			</li>`
-			)
+		)
 		filmSelect.insertAdjacentHTML('beforeend', `<option value="${element.id}">${element.film_name}</option>`);
 	});
 
@@ -45,8 +43,7 @@ function renderFilmsList (filmItems) {
 	const filmCards = [...document.querySelectorAll('.admin-sessions__movie-list-item')];
 
 	filmCards.forEach((element, index) => {
-		element.addEventListener('dragstart', (e) => {	
-			console.log('dragstart')				
+		element.addEventListener('dragstart', (e) => {					
 			dragged = element;
 		})
 
@@ -54,19 +51,17 @@ function renderFilmsList (filmItems) {
 			dragged = null;
 		})
 	});
-
+	
 	renderSessionsList(hallItems, seanceItems);
 	deleteFilm(deleteFilmButton);
-
 };
 
 function deleteFilm (buttonArray) {
 	buttonArray.forEach((element) => {
-			element.addEventListener('click', (e) => {
-				e.preventDefault();
-				const filmId = element.closest('.admin-sessions__movie-list-item').id.slice(4);
-
-				data.deleteFilm(filmId);				
-				})	
-		})
+		element.addEventListener('click', (e) => {
+			e.preventDefault();
+			const filmId = element.closest('.admin-sessions__movie-list-item').id.slice(4);
+			data.deleteFilm(filmId);				
+		})	
+	})
 }
