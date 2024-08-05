@@ -1,24 +1,20 @@
 let data = new allData;
-
 const ticketTitle = document.querySelector('.subheader__title');
 const ticketWrapper = document.querySelector('.ticket-wrapper');
 const ticketInfo = document.querySelector('.ticket-info');
 const getCodeButton = document.getElementById('code-button');
 const ticketHint = document.querySelector('.ticket-hint');
 const qrWrapper = document.getElementById('qr1');
-
 const hallTitle = window.localStorage.getItem('hallTitle');
 const chosenSeats = JSON.parse(window.localStorage.getItem('chosenSeats'));
 const filmTitle = window.localStorage.getItem('filmTitle');
 const seanceId = window.localStorage.getItem('seanceId');
 const seanceTime = window.localStorage.getItem('seanceTime');
 const chosenDate = window.localStorage.getItem('chosenDate');
-
 let totalPrice = 0;
 let placeArray = [];
 
 function renderPayment () {
-
 	chosenSeats.forEach(element => {
 		totalPrice += element.coast;
 		placeArray.push(`Ряд ${element.row} Место ${element.place}`);
@@ -34,7 +30,6 @@ function renderPayment () {
 
 	getCodeButton.addEventListener('click', e => {
 		e.preventDefault();
-
 		const params = new FormData();
 		params.set('seanceId', seanceId);
 		params.set('ticketDate', chosenDate);

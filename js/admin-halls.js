@@ -25,7 +25,6 @@ function renderHallsList (hallsInfo) {
 	renderHallSwitch (document.querySelector('.hall-switch__buttons_configuration'), hallsInfo);
 	renderHallSwitch (document.querySelector('.hall-switch__buttons_launch'), hallsInfo);
 	renderHallSwitch (document.querySelector('.hall-switch__buttons_prices'), hallsInfo);
-	// renderFilmsList();	
 };
 
 function deleteHall (buttonArray) {
